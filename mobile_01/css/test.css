@@ -1,0 +1,13 @@
+body,
+html {
+  background-color: #fffce9;
+}
+.target {
+  width: 100px;
+  height: 100px;
+  background-color: #ff0000;
+  margin: 20px auto;
+}
+.blue {
+  background-color: #0000ff;
+}

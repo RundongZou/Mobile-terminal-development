@@ -1,0 +1,110 @@
+<!--
+       @Author: Rundong Zou
+         @time: 2016/12/05 16:37
+  @description: Mobile terminal layout(移动端布局)
+      @version: 1.1
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=description content="测试">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>mobile-app_practice</title>
+    <link rel="stylesheet" href="css/test.css">
+    <!--<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>-->
+    <script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+    <script src="js/touch.js"></script>
+</head>
+<body>
+<br>
+<br>
+<br>
+<div id="target" class="target"></div>
+<div id="info" class="info"></div>
+
+<div class="box">
+    <p>aaaa</p>
+    <button id="btn1">按钮1</button>
+    <!--<button id="btn2">按钮2</button>-->
+</div>
+
+<script>
+    // 		touchstart:当手指触摸屏幕时触发；即使已经有一个手指放在了屏幕上也会触发。
+    // 		touchmove:当手指在屏幕上滑动时连续的触发。在这个事件发生期间，调用preventDefault()可阻止滚动。
+    // 		touchend:当手指从屏幕上移开时触发
+
+    //document.getElementById('target') 和 target等价
+    // ( 只限于id,因为id是唯一的 )
+
+    target.addEventListener('touchstart', function (event) {
+        info.innerHTML = 'touchstart ' + Math.random();
+        //alert('颜色即将变化');
+        //$("#target").toggleClass("blue");
+    }, false);
+    target.addEventListener('touchmove', function (event) {
+        info.innerHTML = 'touchmove ' + Math.random();
+    }, false);
+    target.addEventListener('touchend', function (event) {
+        info.innerHTML = 'touchend ' + Math.random();
+    }, false);
+
+     //旋转
+   // touch.on('#target', 'touchstart', function (e) {
+        //e.startRotate();
+      //  e.preventDefault();
+    //});
+    //        touch.on(target, 'rotate', function (e) {
+    //            var totalAngle = angle + e.rotation;
+    //            this.style.webkitTransform = $(this).css() + 'rotate(' + totalAngle + 'deg)';
+    //        });
+
+    // 缩放
+    $(function (e) {
+        var target = document.getElementById('target');
+        //target.style.webkitTransition = 'all ease 1s';
+        touch.on(target, 'touchstart', function (e) {
+            e.preventDefault();
+        });
+        var angle = 0;
+
+        var currentScale;
+
+var initScale = 1;
+var oldScale = 1;
+        touch.on(target, 'pinch', function (e) {
+            //currentScale = oldScale;
+            var currentScale = e.scale;
+            var tmp = e.scale - 1;
+            currentScale = oldScale + tmp;
+            // 自己调节可以放大的最大倍数
+            currentScale = currentScale > 5 ? 5 : currentScale;
+            // 自己调节可以缩小的最小倍数
+            currentScale = currentScale < 1 ? 1 : currentScale;
+            this.style.webkitTransform = 'scale(' + currentScale + ')';
+            oldScale = currentScale;
+        })
+    })
+
+     //事件代理练习
+    $(".box").delegate('button', 'click', function(){
+        alert($(this).index() + 'delegate');
+    })
+//    setTimeout(function(){
+//        $('.box').append('<button id="btn2">按钮2</button>');
+//    }, 3000);
+//    $('button').on('click', function(){
+//        alert('also delegate');
+//    })
+
+    // 事件绑定
+//    $('#btn1').bind('click',function(){
+//        alert($(this).index());
+//    })
+//    $('#btn2').bind('click', function(){
+//        $('#btn1').unbind('click');
+//    })
+
+</script>
+</body>
+</html>
