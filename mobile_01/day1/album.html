@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=description content="测试">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>album</title>
+    <style>
+        img{
+            display: block;
+            height:200px;
+            margin-bottom:20px;
+            width:300px;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+    <script src="../js/touch.js"></script>
+</head>
+<body>
+<div id="album">
+    <img src="img/1.jpg" alt="">
+    <img src="img/2.jpg" alt="">
+    <img src="img/3.jpg" alt="">
+    <img src="img/4.jpg" alt="">
+    <img src="img/5.jpg" alt="">
+    <img src="img/6.jpg" alt="">
+    <img src="img/7.jpg" alt="">
+    <img src="img/8.jpg" alt="">
+</div>
+
+<script>
+//事件代理（事件委托）
+//    $('#album').delegate('img', 'click', function () {
+        //console.log($(this));
+        //alert($(this).index());
+
+        //var angle = 0;
+$('img').on('touchstart', function(e){
+    if(e.touches.length == 1){
+        var oldAngle = 0;
+        touch.on('img', 'touchstart', function (e) {
+            e.startRotate();
+            e.preventDefault();
+        });
+        touch.on('img', 'rotate', function (e) {
+            var currentAngle = oldAngle + e.rotation;
+            this.style.webkitTransform = 'rotate(' + currentAngle + 'deg)';
+            oldAngle = currentAngle;
+        });
+    }
+    if(e.touches.length == 1){
+        var initScale = 1;
+        touch.on('img', 'touchstart', function (e) {
+            e.preventDefault();
+        });
+        touch.on('img', 'pinch', function (e) {
+            var tmp = e.scale - 1;
+            currentScale = initScale + tmp;
+            // 自己调节可以放大的最大倍数
+            currentScale = currentScale > 5 ? 5 : currentScale;
+            // 自己调节可以缩小的最小倍数
+            currentScale = currentScale < 1 ? 1 : currentScale;
+            //var currentScale = e.scale;
+            this.style.webkitTransform = 'scale(' + currentScale + ')';
+            //oldScale = currentScale;
+            initScale = currentScale;
+        });
+    }
+})
+
+
+
+//        $(function(e){
+//            //var oldScale = 0;
+//            var initScale = 1;
+//            touch.on('img', 'touchstart', function (e) {
+//                e.preventDefault();
+//            });
+//            touch.on('img', 'pinch', function (e) {
+//                var tmp = e.scale - 1;
+//                currentScale = initScale + tmp;
+//                // 自己调节可以放大的最大倍数
+//                currentScale = currentScale > 5 ? 5 : currentScale;
+//                // 自己调节可以缩小的最小倍数
+//                currentScale = currentScale < 1 ? 1 : currentScale;
+//                //var currentScale = e.scale;
+//                this.style.webkitTransform = 'scale(' + currentScale + ')';
+//                //oldScale = currentScale;
+//                initScale = currentScale;
+//            });
+//        })
+
+
+//    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
