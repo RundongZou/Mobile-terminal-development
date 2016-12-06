@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=description content="alipay">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>alipay</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_zolf2ajicqnf80k9.css">
+    <style>
+        /*@font-face {*/
+            /*font-family: 'iconfont';  !* project id 195704 *!*/
+            /*src: url('//at.alicdn.com/t/font_0d464myk90ctbj4i.eot');*/
+            /*src: url('//at.alicdn.com/t/font_0d464myk90ctbj4i.eot?#iefix') format('embedded-opentype'),*/
+            /*url('//at.alicdn.com/t/font_0d464myk90ctbj4i.woff') format('woff'),*/
+            /*url('//at.alicdn.com/t/font_0d464myk90ctbj4i.ttf') format('truetype'),*/
+            /*url('//at.alicdn.com/t/font_0d464myk90ctbj4i.svg#iconfont') format('svg');*/
+        /*}*/
+        /*.iconfont{*/
+            /*font-family:"iconfont" !important;*/
+            /*font-size:16px;font-style:normal;*/
+            /*-webkit-font-smoothing: antialiased;*/
+            /*-webkit-text-stroke-width: 0.2px;*/
+            /*-moz-osx-font-smoothing: grayscale;*/
+        /*}*/
+        *{  margin: 0;  padding: 0;  }
+        .clearfix:after{
+            content:'';
+            width: 100%;
+            clear: both;
+            display: block;
+        }
+        html{  font-size: 62.5%; }
+        body{ 
+            font-family: '微软雅黑';
+            background-color: #f9f9f9;
+        }
+        header{
+            background-color: #3a3a3a;
+            color: #fff;
+        }
+        .header_top{
+            padding: 15px;
+            display: flex;
+            font-size: 1.6rem;
+        }
+        .header_top_left{  flex: 1;  }
+        .header_top_left .fa{ margin-right: 10px ; }
+        .header_top_right{
+            flex: 1;
+            text-align: right;
+        }
+        .header_top_right .fa{ margin-left: 10px ; }
+        .icon-jia{
+            position: relative;
+            top: -2px;
+        }
+
+        .header_bottom{
+            display: flex;
+            text-align: center;
+            /*看看和弹性盒有关的资料*/
+            justify-content: space-around;
+            padding: 25px 0;
+        }
+        .header_bottom .fa{
+            font-size: 4rem;
+        }
+        .header_bottom p{
+            padding-top: 8px;
+            font-size: 1.2rem;
+        }
+        .body{
+            background-color: #fff;
+            width: 100%;
+        }
+        .body li{
+            display: inline-block;
+            width: 25%;
+            box-sizing: border-box;
+            text-align: center;
+            border-bottom: 1px solid #aaa;
+            border-right: 1px solid #aaa;
+            padding: 10px 0;
+            padding-top: 14px;
+            float: left;
+        }
+        .body li:nth-child(4n){
+            border-right: none;
+        }
+        .body p{
+            color: #000;
+            padding-top: 8px
+            font-size: 1.2rem;
+            margin-top:8px;
+        }
+        .body .yu{
+            /*color: red;*/
+            font-size: 2.2rem;
+        }
+        .blue{
+            color: dodgerblue;
+        }
+        .green{
+            color: forestgreen;
+        }
+        .red{
+            color: red;
+        }
+        .orange{
+            color: orange;
+        }
+        /*.yu{*/
+            /*font-size:50px;*/
+        /*}*/
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="header_top">
+        <div class="header_top_left">
+            <span>
+                <i class="fa iconfont icon-liebiao"></i>
+                账单
+            </span>
+        </div>
+        <div class="header_top_right">
+            <span class="fa iconfont icon-zhanghuxinxi"></span>
+            <span class="fa iconfont icon-sousuo"></span>
+            <span class="fa iconfont icon-jia"></span>
+        </div>
+    </div>
+    <div class="header_bottom">
+        <!--span.header_bottom_box>(i.fa.fa-qrcode+p{扫一扫})*4-->
+        <span class="header_bottom_box">
+            <i class="fa iconfont icon-saoyisao"></i>
+            <p>扫一扫</p>
+        </span>
+        <span class="header_bottom_box">
+            <i class="fa iconfont icon-shoujizhifubaofukuan"></i>
+            <p>付款</p>
+        </span>
+        <span class="header_bottom_box">
+            <i class="fa iconfont icon-qia"></i>
+            <p>卡券</p>
+        </span>
+        <span class="header_bottom_box">
+            <i class="fa iconfont icon-quan"></i>
+            <p>咻一咻</p>
+        </span>
+
+    </div>
+</header>
+<section>
+    <ul class="body clearfix">
+        <li><span>
+            <i class="fa iconfont icon-yuebao red yu"></i>
+            <p>余额宝</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-ai-hongbao red yu"></i>
+            <p>红包</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-tianmao red yu"></i>
+            <p>天猫</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-iconfontzhuanzhang blue yu"></i>
+            <p>转账</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-shoujichongzhi blue yu"></i>
+            <p>手机充值</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-zhimaxinyong green yu"></i>
+            <p>芝麻信用</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-didichuhang orange yu"></i>
+            <p>滴滴出行</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-taobaodianying red yu"></i>
+            <p>淘宝电影</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-mayijubao blue yu"></i>
+            <p>蚂蚁聚宝</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-iconfontyangchengtongchongzhi red yu"></i>
+            <p>羊城通充值</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-world blue yu"></i>
+            <p>世界那么大</p>
+        </span></li>
+        <li><span>
+            <i class="fa iconfont icon-xinyongqiahuankuan orange yu"></i>
+            <p>信用卡还款</p>
+        </span></li>
+    </ul>
+    <!--ul.body>(li>span>i.fa.fa-paper-plane-o+p{余额宝})*12-->
+</section>
+<footer></footer>
+</body>
+</html>
