@@ -1,0 +1,21 @@
+html {
+  font-size: 62.5%;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+header {
+  width: 100%;
+  height: 8rem;
+  background-color: #FF5000;
+}
+.swiper-container {
+  width: 100%;
+  height: 20rem;
+}
+.swiper-container img {
+  width: 100%;
+  height: 100%;
+}

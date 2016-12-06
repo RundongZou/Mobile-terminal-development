@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="dist/css/aaa.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/Swiper/3.4.0/css/swiper.min.css">
+    <script src="http://cdn.bootcss.com/Swiper/3.4.0/js/swiper.js"></script>
+</head>
+<body>
+<header>
+
+</header>
+
+<!--图片轮播-->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="img/banner1.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/banner2.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+            <img src="img/banner3.jpg" alt="">
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+
+</body>
+<script>
+    //swipper
+    var mySwiper = new Swiper ('.swiper-container', {
+        // direction: 'vertical',
+        loop: true,
+
+        // 如果需要分页器
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplayDisableOnInteraction: false,
+        autoplay: 1500
+    });
+</script>
+</html>
