@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>test-zou</title>
+   
+</head>
+<body>
+	<!--<button id="log_btn" onclick = "authLogin()">登录</button>-->
+	<button id="log_btn" onclick = "authLogout()">退出登录</button>
+	<br />
+	<br />
+	<!--<button id="btn_share" onclick = "getServices()">分享</button>-->
+	<br /> 
+	<br />
+	<img src="" alt="" id="pic" width="120" />
+	<button id="pic_btn" onclick = "getImage()">拍照</button>
+	<!--<button id="pay_btn" onclick = "pay()">支付</button>-->
+	
+	 <script type="text/javascript">
+	
+    	var oPic = document.getElementById("pic");
+        oPic.src = window.localStorage.getItem("older_pic") || "img/default.png";
+        
+// 		document.addEventListener('plusready', function(){
+// 			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+// 			
+// 		});
+        var pays = null;
+   		
+   		function plusReady() {
+   			plus.payment.getChannels(function (channels) {
+   				pays = channels;
+   				//channel = channels[1]; //[0]是支付宝， [1]是微信
+   				for (var i in channels) {
+   					var id = channels[i].id;
+   					//console.log(channels[id]);
+   					var btn = document.createElement("button");
+   				    btn.innerHTML = id + "支付";
+   				    console.log(channels[id]);
+   				    //btn.setAttribute("onclick", "pay(this.id)");  //这个有问题： 每次点击都是跳转到最后一个
+   				    btn.onclick = function (id) {
+   				    	return function () {
+   				    		pay(id);
+   				    	}
+   				    }(id)
+   				    document.body.appendChild(btn);
+   				}   				
+   				
+   			}, function (e) {
+
+   			})
+   			//document.body.appendChild("<br />");
+   		}
+   		document.addEventListener('plusready', plusReady, false);
+//支付
+var ALIPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/alipay.php?total=';
+var WXPAYSERVER='http://demo.dcloud.net.cn/helloh5/payment/wxpay.php?total=';
+
+function pay(id){
+	var channel = id === "alipay" ? pays[0] : pays [1];
+	//var id = id === 0 ? "alipay" : "wxpay";
+	var SERVER = id === "alipay" ? ALIPAYSERVER : WXPAYSERVER;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+        	if (xhr.status === 200 || xhr.status === 304) {
+        		plus.payment.request(channel, xhr.responseText, function success() {
+        			alert("支付成功")
+        		}, function fail() {
+        			alert("支付失败");
+        		})
+        	} else {
+        		alert("获取订单信息失败");
+        	}
+        }
+    }
+    xhr.open("GET", SERVER + 0.01);
+    xhr.send();
+}
+
+// 分享
+function plusReady() {
+	plus.share.getServices(function(ss) {
+    shares = ss;
+    for (var i in ss ) {
+        var s = ss[i];
+        var item = document.createElement("button");
+        item.setAttribute("class", "ditem");
+        item.setAttribute("onclick", (s.id == "weixin") ? "shareAction(this.plusShare)" : "shareAction(this.plusShare)");
+        item.innerText = s.description;
+        item.plusShare = s;
+        document.body.appendChild(item);
+    }
+}, function(e) {
+    alert("获取分享服务列表失败：" + e.message);
+});
+}
+document.addEventListener('plusready', plusReady, false);
+
+function shareAction(s, ex) {
+    console.log("分享操作：");
+    if (!s) {
+        console.log("无效的分享服务！");
+        return;
+    }
+    if (s.authenticated) {
+        console.log("---已授权---");
+        shareMessage(s, ex);
+    } else {
+        console.log("---未授权---");
+        s.authorize(function() {
+            shareMessage(s, ex);
+        }, function(e) {
+            console.log("认证授权失败：" + e.code + " - " + e.message);
+        });
+    }
+}
+
+function shareMessage(s,ex){
+    var msg={content:"zou",extra:{scene:ex}};
+        msg.pictures=["img/logo.png"];
+
+    s.send( msg, function(){
+        alert( "分享到\""+s.description+"\"成功！ " );
+    }, function(e){
+        alert( "分享到\""+s.description+"\"失败: "+e.code+" - "+e.message );
+    } );
+}
+function cancelAuth(){try{
+
+    for ( var i in shares ) {
+        var s = shares[i];
+        if ( s.authenticated ) {
+            outLine( "取消\""+s.description+"\"");
+        }
+        s.forbid();
+    }
+    // 取消授权后需要更新服务列表
+    updateServices();
+    outLine( "操作成功！" );}catch(e){alert(e);}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 登录
+var auths=null;
+var a = '';
+// 监听plusready事件  
+document.addEventListener( "plusready", function () {
+	// 扩展API加载完毕，现在可以正常调用扩展API
+	plus.oauth.getServices( function (services) {
+		auths = services;
+		for (var i in services) {
+			var ser_id = services[i].id;
+			var btn = document.createElement("button");
+			btn.innerHTML = ser_id + "登录";
+			btn.onclick = function (ser_id) {
+				return function () {
+					authLogin(ser_id);					
+				}
+				a = ser_id;
+			} (ser_id);
+			document.body.appendChild(btn);
+		}
+	}, function (e) {
+		alert( "获取分享服务列表失败："+e.message+" - "+e.code );
+	} );
+}, false );
+
+// 登录操作
+function authLogin(a){
+	console.log(a);
+	//var s = auths[0];
+	var s;
+	switch (a) {
+		case "qq":
+		    s = auths[0];
+		    break;
+		case "sinaweibo":
+		    s = auths[1];
+		    break;
+		case "weixin":
+		    s = auths[2];
+		    break;
+		default:
+		    break;
+	}
+	if ( !s.authResult ) {
+		s.login( function(e){
+			alert( "登录认证成功！" );
+		}, function(e){
+			alert( "登录认证失败！" );
+		} );
+	}else{
+		alert( "已经登录认证！" );
+	}
+}
+// 注销所有授权登录认证服务
+function authLogout(){
+	for ( var i in auths ) {
+		var s = auths[i];
+		if ( s.authResult ) {
+			s.logout(function(e){
+				alert( "注销登录认证成功！" );
+			}, function(e){
+				alert( "注销登录认证失败！" );
+			});
+		}
+	}
+}
+
+// 拍照
+function getImage() {
+	//outSet( "开始拍照：" );
+	var oPic = document.getElementById("pic");
+	oPic.src = window.localStorage.getItem("older_pic") || "img/default.png";
+	var cmr = plus.camera.getCamera();
+	cmr.captureImage( function ( p ) {
+		//outLine( "成功："+p );
+		plus.io.resolveLocalFileSystemURL( p, function ( entry ) {
+			oPic.src = entry.fullPath;
+			window.localStorage.setItem("older_pic", entry.fullPath);
+			//createItem( entry );
+		}, function ( e ) {
+			outLine( "读取拍照文件错误："+e.message );
+		} );
+	}, function ( e ) {
+		//outLine( "失败："+e.message );
+		console.log("失败："+e.message);
+	});
+}
+		
+    </script>
+</body>
+</html>
