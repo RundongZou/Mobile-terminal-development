@@ -1,1 +1,43 @@
-div{background-color:red}
+@charset "UTF-8";
+/*作用不很多*/
+/*按钮的字体颜色*/
+/*普通字体颜色*/
+/*变亮的字体颜色*/
+/*金额的颜色*/
+.iconfont:before {
+  font-size: 28px; }
+
+#list_page .content {
+  overflow: hidden; }
+
+.pro_list {
+  overflow: hidden; }
+
+/*弹性盒不能用于需要换行的布局*/
+.pro_item {
+  float: left;
+  width: 3.2rem;
+  padding: .2rem .37rem; }
+  .pro_item .pic {
+    width: 2.44rem;
+    box-shadow: 0 0 1px #000;
+    display: block;
+    padding: .06rem; }
+  .pro_item img {
+    width: 2.32rem;
+    height: 2.32rem; }
+  .pro_item .pro_name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block; }
+  .pro_item p {
+    line-height: 1.8; }
+  .pro_item .price {
+    overflow: hidden; }
+  .pro_item em {
+    float: left;
+    color: #e22;
+    font-size: 16px; }
+  .pro_item del {
+    float: right; }
