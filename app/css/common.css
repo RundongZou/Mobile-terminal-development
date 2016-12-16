@@ -382,14 +382,15 @@ html {
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.1); }
   #loading .loading_img {
+    border-radius: 50%;
     width: 62px;
     height: 62px;
     position: absolute;
     left: 50%;
     top: 50%;
     margin: -31px 0 0 -31px;
-    padding: 15px;
     background-color: rgba(0, 0, 0, 0.3); }
     #loading .loading_img img {
-      width: 32px;
-      height: 32px; }
+      width: 62px;
+      height: 62px;
+      border-radius: 50%; }
