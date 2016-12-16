@@ -1,0 +1,78 @@
+@charset "UTF-8";
+/*作用不很多*/
+/*按钮的字体颜色*/
+/*普通字体颜色*/
+/*变亮的字体颜色*/
+/*金额的颜色*/
+.detail_footer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; }
+
+#detail_page .content {
+  bottom: 96px; }
+
+#detail_page .swiper-container {
+  width: 160vw;
+  position: relative;
+  margin-left: -30vw; }
+  #detail_page .swiper-container img {
+    width: 80vw;
+    height: 60vw; }
+
+#detail_page .swiper_btns {
+  height: 30px;
+  padding: 5px 0;
+  text-align: center; }
+  #detail_page .swiper_btns ul {
+    font-size: 0;
+    display: inline-block;
+    height: 20px;
+    padding: 4px 10px;
+    background-color: #bcbcbc;
+    border-radius: 10px; }
+  #detail_page .swiper_btns .swiper-pagination-bullet {
+    display: inline-block;
+    background-color: #959595;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 3px; }
+  #detail_page .swiper_btns .swiper-pagination-bullet-active {
+    background-color: #fff; }
+
+#detail_page .pro_info {
+  padding: 0 0.28rem;
+  font-size: 15px;
+  line-height: 25px; }
+
+.detail_footer {
+  top: auto;
+  bottom: 0;
+  height: 96px; }
+  .detail_footer .look_wrap {
+    height: 48px;
+    background-color: #fff;
+    line-height: 48px; }
+  .detail_footer .add_wrap {
+    height: 48px;
+    background-color: #a3a3a3;
+    padding: 4px 1rem; }
+  .detail_footer .add_cart {
+    color: #fff;
+    width: 100%;
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 4px;
+    letter-spacing: 5px;
+    height: 40px;
+    line-height: 38px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3), inset 0 0 1px rgba(255, 255, 255, 0.3);
+    background: #e22;
+    /* Old browsers */
+    background: -webkit-linear-gradient(top, #e22 0%, #b11 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #e22 0%, #b11 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }

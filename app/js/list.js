@@ -3,12 +3,12 @@
  */
 var listPage = {
     myScroll :null,
-    list:$("#list_page .pro_list"),
+    list: $("#list_page .pro_list"),
     classList: $("#list_page .class_list"),
-    page:0,
-    classID: undefined,
-    canreload: false,
     refresh_text: $(".refresh_text"),
+    page: 0,
+    classID: undefined,
+    canreload: false,   
     init:function () {
 
         //创建一个iscroll
@@ -27,34 +27,36 @@ var listPage = {
         this.bindEvent();
 
     },
+    //获取商品分类
     getClass: function () {
     	$.get("http://datainfo.duapp.com/shopdata/getclass.php", function (data) {
     		console.log(data);
     		var str = ''; //分类的内容
     		for (var i = 0; i < data.length; i ++) {
-    			str += '<li data-id="'+data[i].classID+'">'+data[i].className+'</li>'
+    			str += '<li class="iconfont" data-id="'+data[i].classID+'">'+data[i].className+'</li>'
     		}
     		this.classList.html(str);
     	}.bind(this),"json")
     },
     
     addData:function (reload) {
-        console.log(this.page);
-        if (reload===true) {
+        if (reload) {
         	this.page = 0; 
         }
         //显示蒙层
         $("#loading").show();
         //通过jsonp添加数据
         var sendData = {"classID":this.classID,"pageCode":this.page++,"linenumber":6};
-        $.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?",sendData,function (data) {
+ 
+ //获取商品列表
+ $.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?",sendData,function (data) {
             console.log(data);
             var  str = "";
             for(var i=0;i<data.length;i++){
                 str+='<li class="pro_item">' +
-                        '<a href="###" class="pic"><img src="'+data[i].goodsListImg+'"></a>' +
+                        '<a href="detail.html?goodsID='+ data[i].goodsID +'" class="pic"><img src="'+data[i].goodsListImg+'"></a>' +
                         '<p class="pro_name">'+data[i].goodsName+'</p>' +
-                        '<p class="price"><em>￥'+data[i].price+'</em> <del>￥888</del></p>' +
+                        '<p class="price"><em>￥'+data[i].price+'</em> <del>￥668</del></p>' +
                     '</li>'
             }          
             if (reload) {
@@ -70,7 +72,6 @@ var listPage = {
     },
     bindEvent:function () {
     	var that = this;   	
-    	
     	this.myScroll.on("scroll", function () {
     		if (this.y > 50) {
     			//console.log("刷新");
@@ -82,7 +83,7 @@ var listPage = {
         //给页面元素绑定事件
         this.myScroll.on("scrollEnd",function () {
             //当滚动结束的时候判断是否到，底部
-            if(this.y-this.maxScrollY<50){
+            if(this.y - this.maxScrollY < 50){
                 console.log("加载更多");
                 listPage.addData();
             }
@@ -95,7 +96,7 @@ var listPage = {
         
         //切换商品分类
         this.classList.on("click", "li", function () {
-        	console.log($(this).attr("data-id"));
+        	//console.log($(this).attr("data-id"));
         	that.classID = $(this).attr("data-id");
         	that.addData(true)   //重新给页面添加数据
         })
