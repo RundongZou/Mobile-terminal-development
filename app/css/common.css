@@ -270,7 +270,7 @@ textarea::-moz-focus-inner {
 /*普通字体颜色*/
 /*变亮的字体颜色*/
 /*金额的颜色*/
-.page, .header, .sub_header, .content, .footer {
+.page, .header, .sub_header, .wraper_scroll, .scroll, .content, .footer, #loading {
   position: absolute;
   top: 0;
   left: 0;
@@ -292,8 +292,8 @@ html {
 
 /*头部*/
 .header {
-  height: 43px;
-  line-height: 43px;
+  height: 50px;
+  line-height: 50px;
   background-color: #b11f1f;
   text-align: center;
   color: #fff;
@@ -316,7 +316,7 @@ html {
 
 /*二级头部*/
 .sub_header {
-  top: 43px;
+  top: 50px;
   height: 30px;
   line-height: 30px;
   background-color: #9a9fa5; }
@@ -328,13 +328,25 @@ html {
     color: #fff;
     padding: 0 10px; }
 
+/*iscroll*/
+.wraper_scroll {
+  height: 100%;
+  overflow: hidden; }
+
+.scroll {
+  background-color: #f3f4f6; }
+
+.refresh_text {
+  line-height: 50px;
+  text-align: center; }
+
 /*内容*/
 .content {
-  top: 43px;
+  top: 50px;
   bottom: 0; }
 
 .has_sub_header {
-  top: 73px; }
+  top: 80px; }
 
 .has_footer {
   bottom: 48px; }
@@ -357,5 +369,27 @@ html {
     .footer .footer_list a {
       color: #fff; }
     .footer .footer_list p {
-      height: 24px;
-      line-height: 24px; }
+      height: 20px;
+      line-height: 20px; }
+    .footer .footer_list .icon {
+      height: 28px;
+      line-height: 28px; }
+
+/*loading*/
+#loading {
+  bottom: 0;
+  display: none;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.1); }
+  #loading .loading_img {
+    width: 62px;
+    height: 62px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -31px 0 0 -31px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.3); }
+    #loading .loading_img img {
+      width: 32px;
+      height: 32px; }
