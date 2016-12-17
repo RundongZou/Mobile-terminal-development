@@ -272,7 +272,7 @@
 
 .num_btn {
   float: left;
-  height: 20px;
+  height: 26px;
   color: #fff;
   width: 100%;
   display: block;
@@ -289,14 +289,20 @@
   /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #b0b0b0 0%, #4f4f4f 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  width: 28px; }
+  width: 36px;
+  text-align: center; }
+
+.icon-shanchu {
+  color: #e22; }
 
 .num_val {
   float: left;
   padding: 3px 0;
   border: 1px solid #ccc;
-  width: 38px;
-  text-align: center; }
+  width: 46px;
+  text-align: center;
+  margin: 3px;
+  margin-top: -2px; }
 
 .delete_btn {
   width: 40px;

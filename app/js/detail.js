@@ -13,6 +13,8 @@ var detailPage = {
 		this.bindEvent();
 		//显示蒙层
         $("#loading").show();
+        // 弹框
+        fnBase.myalert();
 	},	
 	
 	addData: function () {
@@ -65,7 +67,10 @@ if (full) {
 			};
 			console.log(send_data);
 			$.get("http://datainfo.duapp.com/shopdata/updatecar.php",send_data,function(data){
-				console.log(data);
+				//console.log(data);
+				if (data === 1) {
+					alert("加入购物车成功")
+				}
 			},"json")
 		}.bind(this))
 	}
