@@ -1,7 +1,7 @@
 /**
  * Created by Rundong Zou
- * version: 1.0
- * time: 2016/12/16 21:05
+ * version: 1.1
+ * time: 2016/12/17 14:48
  */
 var full = false;
 var detailPage = {
@@ -16,9 +16,7 @@ var detailPage = {
 	},	
 	
 	addData: function () {
-		$.get("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?",{goodsID: this.goodsID}, function (data) {
-			//loading蒙层隐藏
-            $("#loading").fadeOut();
+		$.get("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?",{goodsID: this.goodsID}, function (data) {			
 			console.log(data);
 			var goodsListImg = JSON.parse(data[0].imgsUrl);
 			var str_img = "";
@@ -26,6 +24,8 @@ var detailPage = {
 				str_img += '<div class="swiper-slide"><img src="'+goodsListImg[i]+'"></div>'
 			}
 			$("#detail_page .swiper-wrapper").html(str_img);
+			//loading蒙层隐藏
+            $("#loading").fadeOut();
 			
 		//调用js
 	    var swiper = new Swiper('.swiper-container', {
@@ -54,8 +54,7 @@ if (full) {
         '<li class="pro_price"><em>¥'+data[0].price+'</em><del>¥888</del></li>'+
             	'<li class="pro_num">购买人数： '+data[0].buynumber+'</li>';
         $("#detail_page .pro_info").html(str_info);  
-		}, "json")
-		
+		}, "json")		
 	},
 	bindEvent: function () {
 		$("#detail_page .add_cart").on("click", function () {
@@ -64,13 +63,14 @@ if (full) {
 				"goodsID": this.goodsID,
 				"number": 1
 			};
-			$.get(" http://datainfo.duapp.com/shopdata/updatecar.php", send_data, function (data) {
+			console.log(send_data);
+			$.get("http://datainfo.duapp.com/shopdata/updatecar.php",send_data,function(data){
 				console.log(data);
-			}, "json")
-			
+			},"json")
 		}.bind(this))
 	}
 }
+//页面初始化
 detailPage.init();
 
 	

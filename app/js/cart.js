@@ -1,14 +1,23 @@
 var cartPage = {
-	list: $("#cart_page .cart-list"),
+	sub_header: $("#cart_page .sub_header"),
+	list: $("#cart_page .cart_list"),
 	init: function () {
 		this.addData();
 		this.bindEvent();
+		//显示蒙层
+        $("#loading").show();
 	},
 	addData: function () {
 		$.getJSON("http://datainfo.duapp.com/shopdata/getCar.php?callback=?", {"userID": "zourundong"}, function (data) {
 			var str = "";
+			var sub_str = "";
+			
 			for (var i = 0; i < data.length; i ++) {
-				str += '<li class="cart_item" "data-id='+data[i].goodsID+'">'+
+				
+				
+				sub_str += '<p>商品数量: <span class="total_num">0</span>&nbsp;总金额: <em>¥ <span class="total_price">99.00</span></em></p>'
+				
+				str += '<li class="cart_item" data_id="'+data[i].goodsID+'">'+
                     '<a href="###" class="pic"><img src="'+data[i].goodsListImg+'"></a>'+
                     '<div class="pro_info">'+
                          '<p class="pro_name">'+data[i].goodsName+'</p>'+
@@ -22,11 +31,12 @@ var cartPage = {
                             '</div>'+
                         '</div>'+
                     '</div>'+
-
-                    '<a href="javascript:;" class="delete_btn cart_btn">x</a>'+'</li>';
-                    
+                    '<a href="javascript:;" class="delete_btn cart_btn">x</a>'+'</li>';                    
 			}
+			this.sub_header.html(sub_str);
 			this.list.html(str);
+			//loading蒙层隐藏
+            $("#loading").fadeOut();
 			//获取数量和金额总和
 			this.getSum();
 		}.bind(this))
@@ -34,12 +44,60 @@ var cartPage = {
 	bindEvent: function () {
 		var that = this;
 		this.list.on("click", ".cart_btn", function () {
+			
 			var cart_item = $(this).parents(".cart_item");
-			var id = cart_item.attr("data-id");
+			var id = cart_item.attr("data_id");
 			var num_input = cart_item.find(".num_val");
 			var num = parseInt(num_input.val());
-			if ($()) {}
+			//console.log(id);
+			//console.log(num);
+			//console.log(this.price);
+			if ($(this).hasClass("dec")) {
+				num --;
+				num_input.val(num);
+				
+				//console.log("-");
+			} else if ($(this).hasClass("inc")) {
+				num ++;
+				num_input.val(num);
+				//console.log("+");
+			} else {
+				num = 0;
+				cart_item.remove();
+				//console.log("delete");
+			}
+			if (num === 0) {
+				cart_item.remove();
+			}
+			that.getSum();
+			
+			// 更新购物车
+			var send_data = {
+				"userID": "zourundong",
+				"goodsID": id,
+				"number": num
+			};
+			$.get("http://datainfo.duapp.com/shopdata/updatecar.php", send_data, function (data) {
+				//console.log(data);
+			}, "json")
 		})
+	},
+	getSum: function () {
+		//获取数量和金额总和
+		var total_num = 0;
+		var total_price = parseInt($("#cart_page .total_price").html());	
+		//把所有的商品循环，数量和金额累加
+		var num_item = $("#cart_page .num_val");
+		var num = parseInt(num_item.val());
+		var price = $("#cart_page .pro_info .price em").html();
+		//console.log(num);
+		for (var i = 0; i < num_item.length; i ++) {
+			total_num += parseInt(num_item[i].value);
+			
+		}
+		console.log(total_num);
+		$("#cart_page .total_num").html(total_num);
 	}
 }
-cartPage.init();
+//页面初始化
+cartPage.init();	
