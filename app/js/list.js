@@ -17,7 +17,8 @@ var listPage = {
             fadeScrollbars:true,
             shrinkScrollbars:"scale",
             bounce: true,
-            probeType: 2
+            probeType: 2,
+            click: true
         });
         //获取商品的分类数据
         this.getClass();

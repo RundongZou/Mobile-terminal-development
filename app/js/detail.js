@@ -3,6 +3,7 @@
  * version: 1.0
  * time: 2016/12/16 21:05
  */
+var full = false;
 var detailPage = {
 	goodsID: fnBase.request("goodsID"),
 	init: function () {
@@ -10,9 +11,14 @@ var detailPage = {
 		this.addData();
 		//绑定事件
 		this.bindEvent();
+		//显示蒙层
+        $("#loading").show();
 	},	
+	
 	addData: function () {
 		$.get("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?",{goodsID: this.goodsID}, function (data) {
+			//loading蒙层隐藏
+            $("#loading").fadeOut();
 			console.log(data);
 			var goodsListImg = JSON.parse(data[0].imgsUrl);
 			var str_img = "";
@@ -21,21 +27,35 @@ var detailPage = {
 			}
 			$("#detail_page .swiper-wrapper").html(str_img);
 			
-			//调用js
-			 var swiper = new Swiper('.swiper-container', {
+		//调用js
+	    var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
-        loop: true,
-        slidesPerView: 3
+        loop: true
+//      slidesPerView: 3
     });
+    
+	    $("img").on("click", function () {
+	    	full = !full;
+		    //$(this).style.width = "100%";
+//		    $(this).style.height = "100%";
+//          console.log($(this));
+if (full) {
+	$(this).addClass("full_img");
+	$(".swiper_btns").hide();
+} else {
+	$(this).removeClass("full_img");
+	$(".swiper_btns").show();
+}
+            
+	    })
         
         var str_info = "";
         str_info += '<li class="pro_name">'+data[0].goodsName+'</li>'+
         '<li class="pro_price"><em>¥'+data[0].price+'</em><del>¥888</del></li>'+
             	'<li class="pro_num">购买人数： '+data[0].buynumber+'</li>';
-        $("#detail_page .pro_info").html(str_info);
-    
-    
+        $("#detail_page .pro_info").html(str_info);  
 		}, "json")
+		
 	},
 	bindEvent: function () {
 		$("#detail_page .add_cart").on("click", function () {
@@ -44,9 +64,13 @@ var detailPage = {
 				"goodsID": this.goodsID,
 				"number": 1
 			};
-			$.get(" http://datainfo.duapp.com/shopdata/updatecar.php", send_data, function (data) {}, "json")
+			$.get(" http://datainfo.duapp.com/shopdata/updatecar.php", send_data, function (data) {
+				console.log(data);
+			}, "json")
+			
 		}.bind(this))
 	}
 }
 detailPage.init();
+
 	
