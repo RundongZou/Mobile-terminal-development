@@ -381,6 +381,8 @@ html {
     .footer .footer_list .icon {
       height: 26px;
       line-height: 26px; }
+    .footer .footer_list .icon:before {
+      font-size: 20px; }
 
 /*loading*/
 #loading {

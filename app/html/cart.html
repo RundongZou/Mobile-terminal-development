@@ -9,6 +9,7 @@
 	    <link rel="stylesheet" href="http://at.alicdn.com/t/font_f2ajpa3h43oko6r.css" />
 	</head>
 	<body>
+		
 		<div class="page" id="cart_page">
 			<div class="header">
 				<ul class="header_list">
@@ -18,33 +19,13 @@
 				</ul>
 			</div>
 			
-			 <div class="sub-header">
-            <p>商品数量：20 &nbsp;  总金额：<em>￥99.00</em></p>
-        </div>
+			 <div class="sub_header">
+			 	
+	        </div>
 
         <div class="content has_sub_header has_footer">
             <ul class="cart_list">
-
-                <li class="cart_item">
-                    <a href="###" class="pic"><img src=""></a>
-                    <div class="pro_info">
-                        <p class="pro_name">商品111衬衫。针织帽，品111衬衫。针织帽，品111衬衫。针织帽，品111衬衫。针织帽</p>
-                        <p class="price">金额：<em>￥99.99</em></p>
-                        <div class="num_wrap">
-                            <span class="num_tit">数量：</span>
-                            <div class="num_box">
-                                <span class="num_btn">-</span>
-                                <input class="num_val" type="text" value="1" />
-                                <span class="num_btn">+</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="javascript:;" class="delete_btn">x</a>
-                </li>
-
             </ul>
-
         </div>
 			
 			
@@ -59,11 +40,17 @@
            </div>
 		</div>
 		
+		<div id="loading">
+			<div class="loading_img">
+				<img src="../img/loading2.gif" alt="" />
+			</div>
+		</div>
+		
 		<script src="../js/libs/jquery-1.12.3.min.js"></script>
     <script src="../js/cart.js"></script>
     <script>
     	$(".icon-zuo").on("click", function () {
-    		window.location.href = "detail.html";
+    		window.history.go(-1);
     	})
     	$(".go_list").on("click", function () {
     		window.location.href = "list.html";

@@ -220,32 +220,37 @@
 #cart_page .sub_header {
   height: 44px;
   line-height: 44px;
-  backgroung-color: #747474; }
+  background-color: #fffce9;
+  padding-left: 15px; }
+  #cart_page .sub_header .total_num {
+    color: #e22; }
+  #cart_page .sub_header em {
+    color: #e22; }
 
 #cart_page .content {
   top: 87px;
   overflow-y: scroll; }
 
-.cart-list {
+.cart_list {
   overflow: hidden; }
 
-.cart-item {
+.cart_item {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   padding: 15px 0 15px 15px;
   border-bottom: 1px solid #ccc; }
-  .cart-item .pic img {
+  .cart_item .pic img {
     width: 87px;
     height: 87px; }
-  .cart-item .pro_name {
+  .cart_item .pro_name {
     overflow: hidden;
     text-overflow: ellipsis;
     text-overflow: -o-ellipsis-lastline;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical; }
-  .cart-item .pro_info {
+  .cart_item .pro_info {
     flex: 1;
     padding: 0 0.2rem;
     line-height: 20px; }
