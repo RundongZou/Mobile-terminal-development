@@ -6,7 +6,9 @@
 var full = false;
 var detailPage = {
 	goodsID: fnBase.request("goodsID"),
+	userID: fnBase.request("userID"),
 	init: function () {
+		console.log(this.userID);
 		//获取数据
 		this.addData();
 		//绑定事件
@@ -18,7 +20,8 @@ var detailPage = {
 	},	
 	
 	addData: function () {
-		$.get("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?",{goodsID: this.goodsID}, function (data) {			
+		var that = this;
+		$.get("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?",{goodsID: this.goodsID}, function (data) {	
 			console.log(data);
 			var goodsListImg = JSON.parse(data[0].imgsUrl);
 			var str_img = "";
@@ -61,7 +64,7 @@ if (full) {
 	bindEvent: function () {
 		$("#detail_page .add_cart").on("click", function () {
 			var send_data = {
-				"userID": "zourundong",
+				"userID": this.userID,
 				"goodsID": this.goodsID,
 				"number": 1
 			};
@@ -75,7 +78,13 @@ if (full) {
 		}.bind(this))
 	}
 }
+
 //页面初始化
 detailPage.init();
+
+// 点击购物车图标，进入购物车页面
+$(".go_cart").on("click", function () {
+    window.location.href = "cart.html?userID="+detailPage.userID+"";
+})
 
 	

@@ -9,6 +9,7 @@ var listPage = {
     page: 0,
     classID: undefined,
     canreload: false,   
+    userID: fnBase.request("userID"),
     init:function () {
 
         //创建一个iscroll
@@ -55,7 +56,7 @@ var listPage = {
             var  str = "";
             for(var i=0;i<data.length;i++){
                 str+='<li class="pro_item">' +
-                        '<a href="detail.html?goodsID='+ data[i].goodsID +'" class="pic"><img src="'+data[i].goodsListImg+'"></a>' +
+                        '<a href="detail.html?userID='+this.userID+'&goodsID='+ data[i].goodsID +'" class="pic"><img src="'+data[i].goodsListImg+'"></a>' +
                         '<p class="pro_name">'+data[i].goodsName+'</p>' +
                         '<p class="price"><em>￥'+data[i].price+'</em> <del>￥668</del></p>' +
                     '</li>'
