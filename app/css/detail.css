@@ -86,23 +86,3 @@
 
 .icon-gouwuche1:before {
   font-size: 26px; }
-
-#myalert {
-  position: fixed;
-  width: 200px;
-  height: 50px;
-  background-color: rgba(0, 0, 0, 0.5);
-  left: 50%;
-  top: 50%;
-  z-index: 2;
-  font-size: 16px;
-  margin-top: -25px;
-  margin-left: -100px;
-  line-height: 50px;
-  color: white;
-  text-align: center;
-  border-radius: 10px;
-  display: none; }
-
-#myalert.show {
-  display: block; }

@@ -7,14 +7,15 @@
 
     <link rel="stylesheet" href="../css/common.css" />
     <link rel="stylesheet" href="../css/login.css" />
+        <link rel="stylesheet" href="http://at.alicdn.com/t/font_3hnz10xrzruow29.css" />
 	</head>
 	<body>
 		<div class="page" id="login_page">
-			<div class="deader">
-				<ul class="header-list">
-	               <li class="header-btn"></li>
-	               <li class="header-tit">登录</li>
-	               <li class="header-btn"></li>
+			<div class="header">
+				<ul class="header_list">
+	               <li class="header_btn iconfont icon-zuo"></li>
+	               <li class="header_tit">登录</li>
+	               <li class="header_btn"></li>
 	           </ul>
 			</div>
             <div class="content">
@@ -47,5 +48,15 @@
             	</ul>
             </div>
 		</div>
+		
+		<script src="../js/libs/jquery-1.12.3.min.js"></script>
+    <script src="../js/cart.js"></script>
+		
+			<script>
+				$(".icon-zuo").on("click", function () {
+    		window.history.go(-1);
+    	})
+			</script>
+		
 	</body>
 </html>
