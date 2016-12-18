@@ -1,15 +1,17 @@
 var cartPage = {
 	sub_header: $("#cart_page .sub_header"),
 	list: $("#cart_page .cart_list"),
+	userID: fnBase.request("userID"),
 	init: function () {
 		this.addData();
 		this.bindEvent();
 		//显示蒙层
-        $("#loading").show();
-         
+        $("#loading").show();        
 	},
 	addData: function () {
-		$.getJSON("http://datainfo.duapp.com/shopdata/getCar.php?callback=?", {"userID": "zourundong"}, function (data) {
+		var that = this;
+		$.getJSON("http://datainfo.duapp.com/shopdata/getCar.php?callback=?", {"userID": this.userID}, function (data) {
+			//console.log(that.userID);
 			var str = "";
 			var sub_str = "";
 			
@@ -74,7 +76,7 @@ var cartPage = {
 			
 			// 更新购物车
 			var send_data = {
-				"userID": "zourundong",
+				"userID": that.userID,
 				"goodsID": id,
 				"number": num
 			};
