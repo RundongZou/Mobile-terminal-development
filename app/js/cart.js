@@ -6,6 +6,7 @@ var cartPage = {
 		this.bindEvent();
 		//显示蒙层
         $("#loading").show();
+         
 	},
 	addData: function () {
 		$.getJSON("http://datainfo.duapp.com/shopdata/getCar.php?callback=?", {"userID": "zourundong"}, function (data) {

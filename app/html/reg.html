@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>用户注册</title>
+
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/reg.css" />
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3hnz10xrzruow29.css" />
+	</head>
+	<body>
+		<div class="page" id="reg_page">
+			<div class="header">
+				<ul class="header_list">
+	               <li class="header_btn iconfont icon-zuo"></li>
+	               <li class="header_tit">用户注册</li>
+	               <li class="header_btn"></li>
+	           </ul>
+			</div>
+            <div class="content">
+            	<ul class="reg_list">
+            		<li>
+            			<span class="span_username">账户名称： &nbsp;</span>
+            			<input type="text" class="username" placeholder="请输入用户名" value=""/>
+            		</li>
+            		<li>
+            			<span class="span_password">登录密码： &nbsp;</span>
+            			<input type="password" class="password" placeholder="请输入密码" />
+            		</li>
+            		<!--<li>
+            			<span class="span_confirm">确认密码： &nbsp;</span>
+            			<input type="password" class="password" placeholder="请再次输入密码" />
+            		</li>-->
+            		<li>
+            			<input type="button" class="reg_btn" value="确定注册"/>
+            		</li>
+            	</ul>
+            </div>
+		</div>
+		
+	
+			<script src="../js/libs/jquery-1.12.3.min.js"></script>
+			<script src="../js/libs/fnBase.js"></script>
+    <script src="../js/reg.js"></script>
+		
+			<script>
+				$(".icon-zuo").on("click", function () {
+    		window.history.go(-1);
+    	})
+			</script>
+	</body>
+</html>
